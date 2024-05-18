@@ -1,28 +1,25 @@
 import { useForm ,useFieldArray} from "react-hook-form"//hook for managing forms validating etc
 import { DevTool } from "@hookform/devtools";
-import { useEffect } from "react";
+
 
 
 //register is used to register a field
 //uusefieldvalue used for dynamic fields works  with objects
 //onerror and fielderror
+
 const Form = () => {
-    const {register, control,handleSubmit,formState:{errors},isDirty,isValid,isSubmitting,reset,isSubmitSuccessful}=useForm({
+    const {register, control,handleSubmit,formState:{errors},reset,}=useForm({
         defaultValues:{
             username:"",
             email:"",
-            channel:"",
            phNumbers:[{number:""}],
            age:0,
            dob:new Date(),
         }
     });
 
-    useEffect(()=>{
-        if(isSubmitSuccessful){
-            reset();
-        }
-    })
+
+
     //usefield
     const{fields,append,remove}=useFieldArray({
         name:'phNumbers',
@@ -90,19 +87,7 @@ const Form = () => {
         </div>
             <p className="font-semibold text-red-700 items-center">{errors.email?.message}</p>
 
-        <div className="mb-4">
-            <label className="block text-gray-700 text-sm  font-bold mb-2" htmlFor="channel">Channel</label>
-            <input 
-            className="shadow appearance-none border rounded  w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
-            type="text"
-            id="channel"
-            placeholder="channel"
-            {...register ("channel",
-                {required:"channel required"},
-            )}
-            />
-        
-        </div>
+       
 
         <div className="mb-4">
             <label className="block text-gray-700 text-sm  font-bold mb-2" htmlFor="twitter">List of  phone numbers</label>
@@ -184,7 +169,7 @@ const Form = () => {
         <p className="font-semibold text-red-700 items-center">{errors.dob?.message}</p>
         <div className="flex items-center justify-between">
             <button 
-            disabled={!isDirty||!isValid||isSubmitting}
+            
             className="bg-blue-600 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded focus:outline-none"
             type="submit">
                 submit
