@@ -1,8 +1,10 @@
-import Form from "./Form project/Form"
+import Post from "./Post project/Post"
+import AddForm from "./Post project/AddForm"
 const App = () => {
   return (
     <div>
-        <Form/>
+<AddForm/>
+<Post/>
     </div>
   )
 }
